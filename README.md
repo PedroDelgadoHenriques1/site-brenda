@@ -2,8 +2,31 @@
 
 Projeto de site duplo: **vitrine da clínica** (procedimentos estéticos) + **plataforma de cursos** (material de apoio / apostilas para os alunos estudarem).
 
-> **Status:** documentação / pré-desenvolvimento.
+> **Status:** briefing pronto + site Fase 1 esboçado. Aguardando respostas da Brenda pra começar a construção pra valer.
 > **Cliente:** Brenda — biomédica esteta, faz procedimentos e ministra cursos.
+
+## 🔗 Links
+
+| O quê | Onde |
+|------|------|
+| Repositório | https://github.com/PedroDelgadoHenriques1/site-brenda |
+| Preview do site (GitHub Pages) | https://pedrodelgadohenriques1.github.io/site-brenda/ |
+| Briefing (o que a Brenda preenche) | https://briefing-brenda.netlify.app/ |
+
+## 🗺️ Próximos passos
+
+> Ordem do que fazer. Marque `[x]` conforme for andando.
+
+1. [ ] **Re-deploy do briefing v2 no Netlify** — arrastar `briefing/index.html` pra faixa de deploy do site `briefing-brenda`.
+2. [ ] **Mandar o briefing pra Brenda** preencher → https://briefing-brenda.netlify.app/
+3. [ ] **Reunião com a Brenda** (`docs/REUNIAO-BRENDA.md`) — fechar a **decisão crítica**: como o aluno acessa as apostilas (plataforma externa tipo Hotmart/Kiwify ⭐ vs área de membros própria vs senha). Isso trava toda a arquitetura.
+4. [ ] **Coletar os arquivos dela** — apostilas (PDF/Word), fotos, logo (ver checklist abaixo).
+5. [ ] **Definir a stack final** (Astro+Tailwind vs HTML puro) conforme a decisão de acesso ao material.
+6. [ ] **Construir por fase** (`docs/CONSTRUIR-COM-IA.md`):
+   - Fase 1 — site da clínica (já esboçado em `site/`, falta conteúdo real da Brenda)
+   - Fase 2 — catálogo de cursos
+   - Fase 3 — biblioteca de apostilas (**o coração do projeto**)
+7. [ ] **Domínio próprio** (opcional) — ex: `brendaestetica.com.br`.
 
 ---
 
@@ -12,6 +35,7 @@ Projeto de site duplo: **vitrine da clínica** (procedimentos estéticos) + **pl
 ```
 brenda-site/
 ├── README.md                  ← você está aqui
+├── index.html                 ← redireciona pra site/ (raiz do GitHub Pages)
 ├── docs/
 │   ├── DOCUMENTACAO.md         ← resumo do projeto + requisitos essenciais
 │   ├── REUNIAO-BRENDA.md       ← perguntas pra reunião (as decisões que travam tudo)
