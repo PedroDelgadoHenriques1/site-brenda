@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Briefing — Brenda · Biomedicina Estética & Cursos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF7F5;
+    --card:#FFFFFF;
+    --wine:#6E2A4E;
+    --wine-soft:#9A5677;
+    --rose:#C98A9F;
+    --gold:#C0925A;
+    --ink:#2A2126;
+    --muted:#8C7A82;
+    --line:#ECE2E6;
+    --focus:#6E2A4E;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 80px;}
+
+  /* Hero */
+  header.hero{
+    background:linear-gradient(160deg,#6E2A4E 0%,#4A1B36 100%);
+    color:#fff;
+    padding:64px 20px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:-1px;height:40px;
+    background:var(--bg);
+    border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .hero .eyebrow{
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--rose);font-weight:600;margin-bottom:18px;
+  }
+  .hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:500;
+    font-size:clamp(36px,7vw,58px);
+    line-height:1.05;
+    margin:0 0 16px;
+  }
+  .hero h1 em{font-style:italic;color:var(--rose);}
+  .hero p{
+    max-width:520px;margin:0 auto;color:#EAD7DF;font-size:16px;
+  }
+
+  /* Intro note */
+  .intro{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 24px;margin:-12px 0 36px;
+    position:relative;z-index:2;box-shadow:0 8px 30px rgba(74,27,54,.06);
+  }
+  .intro p{margin:0;color:var(--muted);font-size:15px;}
+  .intro strong{color:var(--ink);}
+
+  /* Sections */
+  section.block{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:28px 26px;margin-bottom:22px;
+    box-shadow:0 2px 12px rgba(74,27,54,.04);
+  }
+  .block-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;}
+  .num{
+    font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;
+    color:var(--gold);line-height:1;min-width:34px;
+  }
+  .block-head h2{
+    font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em;
+  }
+  .block-head .sub{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:3px;}
+  .star{color:var(--gold);}
+
+  /* Fields */
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  label{display:block;font-size:14.5px;font-weight:600;margin-bottom:6px;}
+  .hint{display:block;font-size:13px;color:var(--muted);font-weight:400;margin:-2px 0 8px;}
+  input[type=text],input[type=email],input[type=tel],textarea,select{
+    width:100%;border:1px solid var(--line);background:#FCFAFB;
+    border-radius:10px;padding:11px 13px;font-family:inherit;font-size:15px;
+    color:var(--ink);transition:border-color .15s,box-shadow .15s;
+  }
+  textarea{min-height:80px;resize:vertical;}
+  input:focus,textarea:focus,select:focus{
+    outline:none;border-color:var(--focus);
+    box-shadow:0 0 0 3px rgba(110,42,78,.12);background:#fff;
+  }
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:560px){.two{grid-template-columns:1fr;}}
+
+  /* radios / checkboxes */
+  .opts{display:flex;flex-wrap:wrap;gap:10px;}
+  .opt{
+    display:flex;align-items:center;gap:8px;border:1px solid var(--line);
+    background:#FCFAFB;border-radius:999px;padding:8px 14px;cursor:pointer;
+    font-size:14px;transition:border-color .15s,background .15s;
+  }
+  .opt:hover{border-color:var(--rose);}
+  .opt input{accent-color:var(--wine);width:16px;height:16px;}
+
+  /* honeypot */
+  .hidden{position:absolute;left:-9999px;}
+
+  /* submit */
+  .actions{text-align:center;margin-top:32px;}
+  button.send{
+    background:var(--wine);color:#fff;border:none;border-radius:999px;
+    padding:15px 44px;font-family:inherit;font-size:16px;font-weight:600;
+    cursor:pointer;transition:transform .12s,background .2s;letter-spacing:.01em;
+  }
+  button.send:hover{background:#5A2240;transform:translateY(-1px);}
+  button.send:active{transform:translateY(0);}
+  button.send:disabled{opacity:.55;cursor:default;transform:none;}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:18px;}
+
+  /* success */
+  #done{display:none;text-align:center;padding:60px 24px;}
+  #done .check{
+    width:64px;height:64px;border-radius:50%;background:var(--wine);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:30px;margin:0 auto 22px;
+  }
+  #done h2{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:500;margin:0 0 10px;}
+  #done p{color:var(--muted);max-width:420px;margin:0 auto;}
+
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Briefing de Projeto</div>
+  <h1>Vamos desenhar o seu <em>site</em></h1>
+  <p>Preencha com calma — quanto mais detalhe, mais o site vai ter a sua cara. Não precisa responder tudo de uma vez, mas tente não deixar nada em branco.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <p><strong>Como funciona:</strong> são 8 blocos de <strong>decisões</strong> (as escolhas que dão cara ao site — clínica + cursos) + 1 bloco final de <strong>cadastro</strong> rapidinho. Pensa com calma nos primeiros; o último é só preencher. O bloco com <span class="star">★</span> é o coração do projeto. Ao terminar, é só enviar.</p>
+  </div>
+
+  <!-- AJAX target / success -->
+  <div id="done">
+    <div class="check">✓</div>
+    <h2>Recebido!</h2>
+    <p>Seu briefing chegou certinho. Vou analisar tudo e te retorno com os próximos passos. Obrigado, Brenda!</p>
+  </div>
+
+  <form id="briefing" name="briefing-brenda" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="briefing-brenda" />
+    <p class="hidden">
+      <label>Não preencha: <input name="bot-field" /></label>
+    </p>
+
+    <!-- 1 -->
+    <section class="block">
+      <div class="block-head"><span class="num">1</span><h2>Identidade profissional<span class="sub">Quem é você e como quer aparecer</span></h2></div>
+      <div class="two">
+        <div class="field"><label>Nome completo</label><input type="text" name="Nome Completo" /></div>
+        <div class="field"><label>Nome profissional</label><span class="hint">Como quer ser chamada no site</span><input type="text" name="Nome Profissional" /></div>
+      </div>
+      <div class="field"><label>Cidade / onde atende</label><input type="text" name="Cidade" /></div>
+      <div class="field"><label>Formação e especializações</label><span class="hint">Graduação, pós, cursos relevantes — o que dá autoridade ao seu nome</span><textarea name="Formacao"></textarea></div>
+      <div class="field"><label>Modalidade de atendimento</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Modalidade" value="Presencial" /> Presencial</label>
+          <label class="opt"><input type="radio" name="Modalidade" value="Online" /> Online</label>
+          <label class="opt"><input type="radio" name="Modalidade" value="Ambos" /> Os dois</label>
+        </div>
+      </div>
+      <div class="field"><label>Slogan ou frase que te define</label><span class="hint">Se já tiver — pode deixar em branco</span><input type="text" name="Slogan" /></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="block">
+      <div class="block-head"><span class="num">2</span><h2>Sobre você<span class="sub">A história por trás do trabalho</span></h2></div>
+      <div class="field"><label>Sua trajetória em poucas linhas</label><span class="hint">Como começou, há quanto tempo atua</span><textarea name="Historia"></textarea></div>
+      <div class="field"><label>Seu diferencial</label><span class="hint">O que te separa de outras profissionais</span><textarea name="Diferencial"></textarea></div>
+      <div class="field"><label>Tom que quer passar</label><span class="hint">Ex: acolhedor, técnico, premium, descontraído…</span><input type="text" name="Tom De Voz" /></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="block">
+      <div class="block-head"><span class="num">3</span><h2>Marca e visual<span class="sub">Referências de estilo</span></h2></div>
+      <div class="field"><label>Já tem identidade visual?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Tem Branding" value="Sim, completa" /> Sim (logo + paleta + manual)</label>
+          <label class="opt"><input type="radio" name="Tem Branding" value="So logo" /> Só logo</label>
+          <label class="opt"><input type="radio" name="Tem Branding" value="Nao" /> Não tenho nada</label>
+        </div>
+      </div>
+      <div class="two">
+        <div class="field"><label>Cores que AMA</label><input type="text" name="Cores Amo" /></div>
+        <div class="field"><label>Cores que ODEIA</label><input type="text" name="Cores Odeio" /></div>
+      </div>
+      <div class="field"><label>Sites / Instagrams que GOSTA</label><span class="hint">Cole os links — vale referência de qualquer nicho</span><textarea name="Referencias Gosto"></textarea></div>
+      <div class="field"><label>Referências que ODEIA</label><span class="hint">O que não quer de jeito nenhum</span><textarea name="Referencias Odeio"></textarea></div>
+      <div class="field"><label>Perfis do seu nicho que você admira (ou quer se diferenciar)</label><span class="hint">Outras esteticistas / clínicas — pra eu entender o mercado</span><textarea name="Concorrencia"></textarea></div>
+      <div class="field"><label>Sensação que o site deve transmitir em 3 palavras</label><input type="text" name="Sensacao" /></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="block">
+      <div class="block-head"><span class="num">4</span><h2>Clínica — Procedimentos<span class="sub">O lado de atendimento estético</span></h2></div>
+      <div class="field"><label>Todos os procedimentos que oferece</label><textarea name="Procedimentos Lista"></textarea></div>
+      <div class="field"><label>Procedimentos principais (destaque na home)</label><span class="hint">Os 3–4 carros-chefe</span><textarea name="Procedimentos Principais"></textarea></div>
+      <div class="field"><label>Mostra preço no site?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Mostra Preco" value="Sim" /> Sim</label>
+          <label class="opt"><input type="radio" name="Mostra Preco" value="Nao" /> Não</label>
+          <label class="opt"><input type="radio" name="Mostra Preco" value="Sob consulta" /> Sob consulta</label>
+        </div>
+      </div>
+      <div class="field"><label>Trabalha com pacotes / combos?</label><span class="hint">Quais?</span><textarea name="Pacotes"></textarea></div>
+      <div class="field"><label>Tem fotos de antes e depois?</label><span class="hint">E tem autorização das clientes pra usar no site?</span><input type="text" name="Antes Depois" /></div>
+      <div class="field"><label>Como quer receber agendamento?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Como Agendar" value="WhatsApp" /> WhatsApp</label>
+          <label class="opt"><input type="radio" name="Como Agendar" value="Formulario" /> Formulário no site</label>
+          <label class="opt"><input type="radio" name="Como Agendar" value="Agenda online" /> Agenda online</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="block" style="border-color:var(--gold);box-shadow:0 4px 18px rgba(192,146,90,.12);">
+      <div class="block-head"><span class="num" style="color:var(--wine);">5</span><h2>Cursos <span class="star">★</span><span class="sub">O coração do projeto — preencha com atenção</span></h2></div>
+      <div class="field"><label>Cursos que oferece hoje</label><textarea name="Cursos Lista"></textarea></div>
+      <div class="field"><label>Temas / categorias dos cursos</label><span class="hint">Ex: harmonização, peeling, microagulhamento…</span><textarea name="Cursos Temas"></textarea></div>
+      <div class="field"><label>Detalhe cada curso</label><span class="hint">Para cada um: público-alvo, carga horária, pré-requisitos e preço</span><textarea name="Cursos Detalhes" style="min-height:120px;"></textarea></div>
+      <div class="two">
+        <div class="field"><label>Quantas apostilas?</label><input type="text" name="Apostilas Quantidade" /></div>
+        <div class="field"><label>Sobre quais temas?</label><input type="text" name="Apostilas Temas" /></div>
+      </div>
+      <div class="field"><label>Como você imagina a biblioteca de material organizada?</label><span class="hint">Ex: agrupada por tema ou por curso; cada apostila é um arquivo único ou tem vários capítulos/módulos por dentro</span><textarea name="Material Organizacao"></textarea></div>
+      <div class="field"><label>O conteúdo das apostilas já existe?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Apostilas Conteudo" value="Pronto" /> Já tenho em PDF/Word</label>
+          <label class="opt"><input type="radio" name="Apostilas Conteudo" value="Parcial" /> Tenho parte</label>
+          <label class="opt"><input type="radio" name="Apostilas Conteudo" value="Produzir" /> Precisa ser produzido</label>
+        </div>
+      </div>
+      <div class="field"><label>Formato do material de estudo</label>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Formato Material" value="PDF download" /> PDF pra baixar</label>
+          <label class="opt"><input type="checkbox" name="Formato Material" value="Leitura online" /> Leitura online</label>
+          <label class="opt"><input type="checkbox" name="Formato Material" value="Video" /> Vídeo</label>
+        </div>
+      </div>
+      <div class="field"><label>Como o aluno acessa o material?</label><span class="hint">É a decisão que mais muda o site — pensa com calma</span>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Como Acessa Material" value="Publico" /> Liberado pra todos</label>
+          <label class="opt"><input type="radio" name="Como Acessa Material" value="Area de membros" /> Só quem comprou (login)</label>
+          <label class="opt"><input type="radio" name="Como Acessa Material" value="Senha" /> Download com senha</label>
+        </div>
+      </div>
+      <div class="field"><label>Emite certificado de conclusão?</label><span class="hint">Automático ou manual?</span><input type="text" name="Certificado" /></div>
+      <div class="field"><label>As aulas são…</label>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Formato Aulas" value="Gravadas" /> Gravadas</label>
+          <label class="opt"><input type="checkbox" name="Formato Aulas" value="Ao vivo" /> Ao vivo</label>
+          <label class="opt"><input type="checkbox" name="Formato Aulas" value="Presenciais" /> Presenciais</label>
+        </div>
+      </div>
+      <div class="field"><label>Como vende os cursos hoje?</label><span class="hint">Plataforma própria, pagamento direto, Hotmart, Kiwify…</span><input type="text" name="Como Vende" /></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="block">
+      <div class="block-head"><span class="num">6</span><h2>Conteúdo disponível<span class="sub">O que você já tem em mãos</span></h2></div>
+      <div class="field"><label>Fotos</label><span class="hint">Da clínica, suas, dos procedimentos — já tem ou precisa de ensaio?</span><textarea name="Fotos"></textarea></div>
+      <div class="field"><label>Vídeos</label><input type="text" name="Videos" /></div>
+      <div class="field"><label>Depoimentos de clientes / alunos</label><span class="hint">Tem prints, textos ou vídeos pra usar?</span><textarea name="Depoimentos"></textarea></div>
+      <div class="field"><label>Textos</label><span class="hint">Você escreve ou precisa que a gente crie?</span><input type="text" name="Textos" /></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="block">
+      <div class="block-head"><span class="num">7</span><h2>Como o site deve funcionar<span class="sub">O que ele precisa fazer no dia a dia</span></h2></div>
+      <div class="field"><label>O que o site PRECISA ter, sem falta</label><span class="hint">Se faltar isso, pra você o site não tá pronto</span><textarea name="Must Have"></textarea></div>
+      <div class="field"><label>Tem algo que você definitivamente NÃO quer no site?</label><span class="hint">Pode ser visual, uma palavra, um estilo… qualquer coisa que te incomoda</span><textarea name="Never"></textarea></div>
+      <div class="field"><label>Quer que o site se conecte com:</label>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="Integracoes" value="WhatsApp" /> WhatsApp</label>
+          <label class="opt"><input type="checkbox" name="Integracoes" value="Instagram" /> Instagram</label>
+          <label class="opt"><input type="checkbox" name="Integracoes" value="Google Maps" /> Google Maps</label>
+          <label class="opt"><input type="checkbox" name="Integracoes" value="Pagamento online" /> Pagamento online</label>
+          <label class="opt"><input type="checkbox" name="Integracoes" value="E-mail marketing" /> E-mail/newsletter</label>
+        </div>
+      </div>
+      <div class="field"><label>Quem vai atualizar o conteúdo depois?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="Autonomia" value="Eu mesma" /> Eu mesma quero mexer</label>
+          <label class="opt"><input type="radio" name="Autonomia" value="Terceirizar" /> Prefiro terceirizar</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="block">
+      <div class="block-head"><span class="num">8</span><h2>Objetivo do projeto<span class="sub">Onde você quer chegar</span></h2></div>
+      <div class="field"><label>Objetivo nº1 do site</label><span class="hint">Vender curso? Atrair paciente? Autoridade? Se for "tudo", qual vem primeiro?</span><input type="text" name="Objetivo" /></div>
+      <div class="field"><label>Já tem site hoje?</label><span class="hint">Qual é, e o que te incomoda nele</span><textarea name="Site Atual"></textarea></div>
+      <div class="two">
+        <div class="field"><label>Prazo desejado</label><span class="hint">Tem alguma data na cabeça?</span><input type="text" name="Prazo" /></div>
+        <div class="field"><label>Quer domínio próprio?</label><span class="hint">Ex: brendaestetica.com.br</span><input type="text" name="Dominio" /></div>
+      </div>
+      <div class="field"><label>Algo a mais que eu precise saber?</label><textarea name="Extra"></textarea></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="block">
+      <div class="block-head"><span class="num">9</span><h2>Dados pra cadastro<span class="sub">Rapidinho — não precisa pensar, só preencher</span></h2></div>
+      <div class="two">
+        <div class="field"><label>WhatsApp</label><input type="tel" name="Whatsapp" /></div>
+        <div class="field"><label>E-mail</label><input type="email" name="Email" /></div>
+      </div>
+      <div class="two">
+        <div class="field"><label>CRBM (nº do registro)</label><span class="hint">Vai no site — o Conselho exige identificação profissional</span><input type="text" name="CRBM" /></div>
+        <div class="field"><label>CNPJ</label><span class="hint">Só se for emitir nota / vender curso</span><input type="text" name="CNPJ" /></div>
+      </div>
+      <div class="field"><label>Redes sociais (links)</label><span class="hint">Instagram, etc. — por onde os alunos te acham</span><textarea name="Redes Sociais"></textarea></div>
+    </section>
+
+    <div class="actions">
+      <button type="submit" class="send">Enviar briefing</button>
+      <p class="foot">Suas respostas vão direto pro e-mail do responsável pelo projeto.</p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('briefing');
+  const done = document.getElementById('done');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = form.querySelector('button.send');
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    const data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      form.style.display = 'none';
+      done.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+      btn.disabled = false; btn.textContent = 'Enviar briefing';
+      alert('Algo deu errado no envio. Tente de novo em instantes.');
+    });
+  });
+</script>
+</body>
+</html>
